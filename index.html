@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Palindrome Checker</title>
+<link rel="shortcut icon" href="https://www.shutterstock.com/shutterstock/photos/1754594897/display_1500/stock-photo-words-wow-and-mom-colorful-letters-isolated-on-a-white-background-1754594897.jpg" type="image/x-icon">
+<style>
+    body {
+        font-family: Arial, sans-serif;
+        margin: 0;
+        padding: 0;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        height: 100vh;
+        background-color: #f4f4f4;
+    }
+    .container {
+        text-align: center;
+    }
+    h1 {
+        margin-bottom: 20px;
+    }
+    input[type="text"] {
+        padding: 10px;
+        width: 300px;
+        margin-bottom: 10px;
+    }
+    input[type="text"]:focus {
+        outline: none;
+        border: 1px solid #00fd08;
+    }
+    button {
+        padding: 10px 20px;
+        background-color: #4CAF50;
+        color: white;
+        border: none;
+        cursor: pointer;
+    }
+    button:hover {
+        background-color: #45a049;
+        transform: scale(1.1);
+    }
+    
+    .result {
+        margin-top: 20px;
+    }
+</style>
+</head>
+<body>
+
+<div class="container">
+    <h1>Palindrome Checker</h1>
+    <input type="text" id="textInput" placeholder="Input teks/kalimat disini...">
+    <button onclick="checkPalindrome()" id="checkButton">Check</button>
+    <p class="result" id="result"></p>
+    <p class="confirm" id="confirm"></p>
+</div>
+
+<script>
+ //function to check palindrome
+        //get input
+        //get result
+        //check if input is empty
+        //tampilkan pesan dalam result element
+        //constanta untuk error text,lalu teks diubah ke huruf kecil,replace semua karakter yang bukan huruf ke angka
+        //constanta reversedText untuk mengecek apakah input sama dengan  error text
+        //lakukan method split dan reverse lalu gabungkan
+        //lakukan pencocokan,jika error text sama dengan reversedText,tampilkan pesan "palindrome"
+        //jika tidak, tampilkan pesan "bukan palindrome"
+    function checkPalindrome() {
+        const text = document.getElementById("textInput").value;
+        const result = document.getElementById("result");
+        
+        if (text.length === 0) {
+            result.innerText = 'Kalimat / kata tidak boleh kosong';
+            return;
+        }
+        
+        const errorText = text.toLowerCase().replace(/[^a-z0-9]/g, '');
+        if (errorText.length === 0) {
+            result.innerText = 'Yang Anda input bukan teks/kalimat';
+            return;
+        }
+        
+        const reversedText = errorText.split('').reverse().join('');
+
+        if (errorText === reversedText) {
+            result.innerText = 'Ya, itu termasuk palindrome!';
+        } else {
+            result.innerText = 'Tidak, bukan palindrome!';
+        }
+    }
+
+    const confirmElement = document.getElementById("confirm");
+    const clearButton = document.createElement("button");
+    clearButton.innerText = "Bersihkan Layar";
+    clearButton.onclick = function() {
+        document.getElementById("textInput").value = "";
+        document.getElementById("result").innerText = "";
+    };
+    confirmElement.appendChild(clearButton);
+</script>
+
+</body>
+</html>
